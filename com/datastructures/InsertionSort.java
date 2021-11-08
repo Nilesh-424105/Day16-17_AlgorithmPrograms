@@ -1,17 +1,23 @@
 package com.datastructures;
 
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class InsertionSort {
 
 	public static void main(String args[]) {
-		InputString array = new InputString();
-		String[] string = array.inputTheString();
-		System.out.println("Array after sorting");
-		Sorting sorting = new Sorting();
-		sorting.sort(string);
-		sorting.printStringArray(string);
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter number of elements you want in the array: ");
+		int count = sc.nextInt();
 
+		// Declare and assigning array
+		int number[] = new int[count];
+		System.out.println("Enter array elements:");
+		for (int i = 0; i < count; i++) {
+			number[i] = sc.nextInt();
+		}
+		sc.close();
+		Sorting sort = new Sorting();
+		sort.bubbleSort(number);
 	}
 
 }

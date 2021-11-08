@@ -2,23 +2,35 @@ package com.datastructures;
 
 public class Sorting {
 
-	// Bubble sorting
-	public static void bubbleSort(int array[]) {
-		int length = array.length;
-		for (int i = 0; i < length; i++) {
-			for (int j = i + 1; j < length; j++) {
-				if (array[i] > array[j]) {
-					int temp = array[i];
-					array[i] = array[j];
-					array[j] = temp;
-				}
+	// Merge Sorting
+	public static void mergeSort(String[] string) {
+		if (string.length > 1) {
+			String[] leftString = new String[string.length / 2];
+			String[] rightString = new String[string.length - string.length / 2];
+			for (int i = 0; i < leftString.length; i++) {
+				leftString[i] = string[i];
 			}
-		}
-		// Print Elements After Sorting
-		System.out.println("Array Elements after sorting: ");
-		for (int i = 0; i < length; i++) {
-			System.out.println(array[i]);
+			for (int j = 0; j < rightString.length; j++) {
+				rightString[j] = string[j + string.length / 2];
+			}
+			mergeSort(leftString);
+			mergeSort(rightString);
+			merge(string, leftString, rightString);
 		}
 	}
 
+	public static void merge(String[] stringArray, String[] leftString, String[] rightString) {
+		int a = 0;
+		int b = 0;
+		for (int i = 0; i < stringArray.length; i++) {
+			if (b >= rightString.length
+					|| (a < leftString.length && leftString[a].compareToIgnoreCase(rightString[b]) < 0)) {
+				stringArray[i] = leftString[a];
+				a++;
+			} else {
+				stringArray[i] = rightString[b];
+				b++;
+			}
+		}
+	}
 }
